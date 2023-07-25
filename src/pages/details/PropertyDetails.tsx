@@ -20,6 +20,7 @@ import {
 } from "@heroicons/react/24/outline";
 import LoadingImage from "src/assets/images/loading-image.gif";
 import useFavourite from "src/hooks/useFavourite";
+import { AxiosResponse } from "axios";
 
 const PropertyDetails = () => {
   const [images, setImages] = useState<string[]>([]);
@@ -30,7 +31,7 @@ const PropertyDetails = () => {
   const { isFavourite, addFavourites, removeFavourite } = useFavourite();
   const propertyIsSaved = isFavourite(id!);
 
-  const onSuccessPropertyLoaded = () => {
+  const onSuccessPropertyLoaded = (data: AxiosResponse) => {
     const allPropertyImages = [data?.data.heroImg, ...data?.data.images];
     setImages(allPropertyImages);
     setCurrentImageSrc(allPropertyImages[0]);

@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { UseQueryOptions, useQuery } from "react-query";
 import Axios from "src/api/Axios";
 
@@ -6,7 +7,10 @@ const fetchProperty = (props: UseQueryOptions) => {
   return Axios.get(`/properties/${propertyId}`);
 };
 
-export const useFetchProperty = (id: string, onSuccess: () => void) => {
+export const useFetchProperty = (
+  id: string,
+  onSuccess: (data: AxiosResponse) => void
+) => {
   return useQuery([`property-detail`, id], fetchProperty, {
     onSuccess,
   });
