@@ -20,7 +20,9 @@ import RegionSouthAmerica from "../../assets/images/region-south-america.png";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
-type Props = {};
+type Props = {
+  setIsShowingFavourites: (val: boolean) => void;
+};
 const Header = (props: Props) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [startDate, setStartDate] = useState<Date>(new Date());
@@ -113,7 +115,10 @@ const Header = (props: Props) => {
         />
         <MagnifyingGlassIcon className="hidden md:inline-flex h-8 bg-red-400 rounded-full p-2 text-white cursor-pointer md:mx-2" />
       </div>
-      <div className="flex space-x-4 items-center justify-end">
+      <div
+        className="flex space-x-4 items-center justify-end"
+        onClick={() => props.setIsShowingFavourites(true)}
+      >
         <div className="flex sm:space-x-2 cursor-pointer border-2 rounded-full p-4 hover:shadow-md">
           <p className="text-sm hidden md:inline-block">Favourites</p>
           <HeartIcon className="h-6" color="red" />
