@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import StayBaeLogo from "../../assets/images/staybae.png";
 import { MagnifyingGlassIcon, HeartIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
+import { DateRangePicker } from "react-date-range";
 
 // region images
 
@@ -46,9 +47,9 @@ const Header = (props: Props) => {
     navigate("/search", {
       replace: true,
       state: {
-        location: "",
-        startDate: "",
-        endDate: "",
+        location: searchTerm,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
       },
     });
   };
@@ -101,6 +102,9 @@ const Header = (props: Props) => {
           name="search"
           id="searchId"
           className="flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Start your search..."
         />
         <MagnifyingGlassIcon className="hidden md:inline-flex h-8 bg-red-400 rounded-full p-2 text-white cursor-pointer md:mx-2" />
       </div>
@@ -193,6 +197,17 @@ const Header = (props: Props) => {
               <span className="text-sm font-light">Australia</span>
             </div>
           </div>
+        </div>
+      )}
+      {!!searchTerm && (
+        <div className="flex flex-col col-span-3 mx-auto">
+          <DateRangePicker
+            ranges={[selectionRange]}
+            minDate={new Date()}
+            rangeColors={["#FD5861"]}
+            onChange={handleSelectedDate}
+          />
+          <div className="flex item-center border-b mb-4"></div>
         </div>
       )}
     </header>
