@@ -1,6 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import StayBaeLogo from "../../assets/images/staybae.png";
-import { MagnifyingGlassIcon, HeartIcon } from "@heroicons/react/20/solid";
+import {
+  MagnifyingGlassIcon,
+  HeartIcon,
+  UsersIcon,
+} from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { DateRangePicker } from "react-date-range";
 
@@ -50,6 +54,7 @@ const Header = (props: Props) => {
         location: searchTerm,
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString(),
+        numberOfGuests,
       },
     });
   };
@@ -64,7 +69,7 @@ const Header = (props: Props) => {
       state: {
         region,
         startDate: new Date().toISOString(),
-        endDate: endDate.toISOString,
+        endDate: endDate.toISOString(),
         numberOfGuests: 10,
       },
     });
@@ -207,7 +212,30 @@ const Header = (props: Props) => {
             rangeColors={["#FD5861"]}
             onChange={handleSelectedDate}
           />
-          <div className="flex item-center border-b mb-4"></div>
+          <div className="flex item-center border-b mb-4">
+            <h2 className="text-xl flex-grow font-semibold">
+              Number of Guests
+            </h2>
+            <UsersIcon className="h-5" />
+            <input
+              type="number"
+              id="numberOfGuestsId"
+              min={1}
+              value={numberOfGuests}
+              onChange={(e) => {
+                setNumberOfGuests(e.target.value as unknown as number);
+              }}
+              className="w-12 pl-2 text-lg outline-none text-red-400"
+            />
+          </div>
+          <div className="flex">
+            <button onClick={resetInput} className="flex-grow text-gray-500">
+              Cancel
+            </button>
+            <button onClick={handleSearch} className="flex-grow text-red-500">
+              Search
+            </button>
+          </div>
         </div>
       )}
     </header>
