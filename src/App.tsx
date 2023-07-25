@@ -2,6 +2,9 @@ import Layout from "./components/layout/Layout";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import ProgressBar from "@badrap/bar-of-progress";
 import { useEffect } from "react";
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
 import Home from "./pages/home/Home";
 import PropertyDetails from "./pages/details/PropertyDetails";
 import Search from "./pages/search/Search";
@@ -13,6 +16,8 @@ const progress = new ProgressBar({
   className: "z-50",
   delay: 100,
 });
+
+const queryClient = new QueryClient();
 
 function App() {
   const location = useLocation();
@@ -26,7 +31,7 @@ function App() {
   }, [location]);
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -40,7 +45,8 @@ function App() {
           />
         </Route>
       </Routes>
-    </>
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+    </QueryClientProvider>
   );
 }
 
