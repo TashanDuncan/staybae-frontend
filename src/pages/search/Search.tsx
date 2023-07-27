@@ -28,9 +28,15 @@ const Search = () => {
       const toDate = format(new Date(endDate), "yyyy/MM/dd");
 
       try {
-        const response = await Axios.get(
-          `/properties?from=${fromDate}&to=${toDate}&city=${searchLocation}&region=${region}`
-        );
+        const parameters = region
+          ? {
+              from: fromDate,
+              to: endDate,
+              city: searchLocation,
+              region: region,
+            }
+          : { from: fromDate, to: endDate, city: searchLocation };
+        const response = await Axios.get(`/properties`, { params: parameters });
 
         if (response.status === 200) {
           setSearchResults(response.data);
