@@ -49,8 +49,8 @@ const PropertyDetails = () => {
   };
 
   const nextImage = () => {
-    const isLastSlide = currentImage === 0;
-    const newImageIdx = isLastSlide ? images.length - 1 : currentImage - 1;
+    const isLastSlide = currentImage === images.length - 1;
+    const newImageIdx = isLastSlide ? 0 : currentImage + 1;
 
     setCurrentImage(newImageIdx);
     setCurrentImageSrc(images[newImageIdx]);
