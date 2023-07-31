@@ -9,7 +9,7 @@ You are expected to attempt as many of the following challenges:
 - [x] Ensure that the favourites can be selected from the Top Picks as well be removed from the
 favourite list (similar to the Property Details page)
 
-- [ ] Add ability to remove items from the favourites list
+- [x] Add ability to remove items from the favourites list
 
 - [ ] On the footer, create a link or amend the footer to add an ‘About Us’ page. Create a new about
 us page and add content to it. You must ensure you can navigate to it as well once it’s clicked.
