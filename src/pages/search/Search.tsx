@@ -1,13 +1,18 @@
 import { format } from "date-fns";
-import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import Axios from "src/api/Axios";
 import InfoCard from "src/components/cards/InfoCard";
 import { useSearchResults } from "src/hooks/useSearchResults";
 import PropertyType from "src/interfaces/Property";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
+import { useMemo } from "react";
+import Map from "src/components/map/Map";
 
 const Search = () => {
   const location = useLocation();
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY!,
+  });
+  const centerMap = useMemo(() => ({ lat: 0, lng: 0 }), []);
 
   //extract request/state parameters:
   const {
@@ -29,7 +34,12 @@ const Search = () => {
 
   return (
     <div className="flex pt-10">
-      <section className="flex-grow px-6">
+      <Map
+        searchResults={searchResults}
+        region={region}
+        searchLocation={searchLocation}
+      />
+      <section className="flex-grow px-6 overflow-y-auto h-screen">
         <p className="text-xs">
           {searchResults?.length || 0} Stays - {range} for {numberOfGuests}{" "}
           guest(s)

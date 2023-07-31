@@ -11,10 +11,10 @@ favourite list (similar to the Property Details page)
 
 - [x] Add ability to remove items from the favourites list
 
-- [ ] On the footer, create a link or amend the footer to add an ‘About Us’ page. Create a new about
+- [x] On the footer, create a link or amend the footer to add an ‘About Us’ page. Create a new about
 us page and add content to it. You must ensure you can navigate to it as well once it’s clicked.
 
-- [ ] Enhance the search results to render a map. For this you will be required to use Google Maps.
+- [x] Enhance the search results to render a map. For this you will be required to use Google Maps.
 This will also require you to obtain a personal access token from the Google Developers portal.
 DO NOT STORE THE TOKEN in any repository where you store the code. See below how to
 add a private key to your project and use it in the code.

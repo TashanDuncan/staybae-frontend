@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import HeroImage from "../../assets/images/hero-image.jpeg";
+import { Region } from "src/utils/Regions";
 
 const Banner = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Banner = () => {
         startDate: new Date().toISOString(),
         endDate: endDate.toISOString(),
         numberOfGuests: 10,
+        region: Region.Worldwide,
       },
     });
   };
