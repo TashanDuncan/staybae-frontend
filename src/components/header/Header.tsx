@@ -19,6 +19,7 @@ import RegionSouthAmerica from "../../assets/images/region-south-america.png";
 
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { Region } from "src/utils/Regions";
 
 type Props = {
   setIsShowingFavourites: (val: boolean) => void;
@@ -61,7 +62,7 @@ const Header = (props: Props) => {
     });
   };
 
-  const handleRegionSearch = (region: string) => {
+  const handleRegionSearch = (region: Region) => {
     const endDate = new Date();
     endDate.setFullYear(new Date().getFullYear() + 10);
     setShowRegions(false);
@@ -131,7 +132,7 @@ const Header = (props: Props) => {
             <div className="flex flex-col items-center">
               <div
                 className="border-2 rounded-lg border-gray-300 h-32 w-32 overflow-hidden"
-                onClick={() => handleRegionSearch("Worldwide")}
+                onClick={() => handleRegionSearch(Region.Worldwide)}
               >
                 <img
                   src={RegionFlexible}
@@ -144,7 +145,7 @@ const Header = (props: Props) => {
             <div className="flex flex-col items-center">
               <div
                 className="border-2 rounded-lg border-gray-300 h-32 w-32 overflow-hidden"
-                onClick={() => handleRegionSearch("United States")}
+                onClick={() => handleRegionSearch(Region.USA)}
               >
                 <img
                   src={RegionUsa}
@@ -157,7 +158,7 @@ const Header = (props: Props) => {
             <div className="flex flex-col items-center">
               <div
                 className="border-2 rounded-lg border-gray-300 h-32 w-32 overflow-hidden"
-                onClick={() => handleRegionSearch("South America")}
+                onClick={() => handleRegionSearch(Region.SouthAmerica)}
               >
                 <img
                   src={RegionSouthAmerica}
@@ -170,7 +171,7 @@ const Header = (props: Props) => {
             <div className="flex flex-col items-center">
               <div
                 className="border-2 rounded-lg border-gray-300 h-32 w-32 overflow-hidden"
-                onClick={() => handleRegionSearch("Europe")}
+                onClick={() => handleRegionSearch(Region.Europe)}
               >
                 <img
                   src={RegionEu}
@@ -183,7 +184,7 @@ const Header = (props: Props) => {
             <div className="flex flex-col items-center">
               <div
                 className="border-2 rounded-lg border-gray-300 h-32 w-32 overflow-hidden"
-                onClick={() => handleRegionSearch("Asia")}
+                onClick={() => handleRegionSearch(Region.Asia)}
               >
                 <img
                   src={RegionAsia}
@@ -196,7 +197,7 @@ const Header = (props: Props) => {
             <div className="flex flex-col items-center">
               <div
                 className="flex flex-col items-center border-2 rounded-lg border-gray-300 h-32 w-32 overflow-hidden"
-                onClick={() => handleRegionSearch("Australia")}
+                onClick={() => handleRegionSearch(Region.Australia)}
               >
                 <img
                   src={RegionAus}
