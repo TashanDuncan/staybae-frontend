@@ -7,7 +7,6 @@ import { useSearchResults } from "src/hooks/useSearchResults";
 import PropertyType from "src/interfaces/Property";
 
 const Search = () => {
-  // const [searchResults, setSearchResults] = useState<PropertyType[]>([]);
   const location = useLocation();
 
   //extract request/state parameters:
