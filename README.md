@@ -6,7 +6,7 @@ application as a whole.
 
 You are expected to attempt as many of the following challenges:
 
-- [ ] Ensure that the favourites can be selected from the Top Picks as well be removed from the
+- [x] Ensure that the favourites can be selected from the Top Picks as well be removed from the
 favourite list (similar to the Property Details page)
 
 - [ ] Add ability to remove items from the favourites list
