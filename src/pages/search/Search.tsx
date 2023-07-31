@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Axios from "src/api/Axios";
 import InfoCard from "src/components/cards/InfoCard";
+import { useSearchResults } from "src/hooks/useSearchResults";
 import PropertyType from "src/interfaces/Property";
 
 const Search = () => {
-  const [searchResults, setSearchResults] = useState<PropertyType[]>([]);
+  // const [searchResults, setSearchResults] = useState<PropertyType[]>([]);
   const location = useLocation();
 
   //extract request/state parameters:
@@ -21,38 +22,18 @@ const Search = () => {
   const formattedStartDate = format(new Date(startDate), "dd MMMM yy");
   const formattedEndDate = format(new Date(endDate), "dd MMMM yy");
   const range = `${formattedStartDate} - ${formattedEndDate}`;
+  const fromDate = format(new Date(startDate), "yyyy/MM/dd");
+  const toDate = format(new Date(endDate), "yyyy/MM/dd");
 
-  useEffect(() => {
-    const findPropertiesForCriteria = async () => {
-      const fromDate = format(new Date(startDate), "yyyy/MM/dd");
-      const toDate = format(new Date(endDate), "yyyy/MM/dd");
-
-      try {
-        const parameters = region
-          ? {
-              from: fromDate,
-              to: endDate,
-              city: searchLocation,
-              region: region,
-            }
-          : { from: fromDate, to: endDate, city: searchLocation };
-        const response = await Axios.get(`/properties`, { params: parameters });
-
-        if (response.status === 200) {
-          setSearchResults(response.data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    findPropertiesForCriteria();
-  }, [region, searchLocation, startDate, endDate]);
+  const { data } = useSearchResults(fromDate, toDate, searchLocation, region);
+  const searchResults: PropertyType[] = data?.data;
 
   return (
     <div className="flex pt-10">
       <section className="flex-grow px-6">
         <p className="text-xs">
-          {searchResults.length} Stays - {range} for {numberOfGuests} guest(s)
+          {searchResults?.length || 0} Stays - {range} for {numberOfGuests}{" "}
+          guest(s)
         </p>
         <h1 className="text-3xl font-semibold mt-2 mb-6">
           Stays in {searchLocation ?? region}
@@ -66,15 +47,15 @@ const Search = () => {
           <p className="button">More Filters</p>
         </div>
         <div className="flex flex-col">
-          {searchResults.length === 0 && (
+          {!searchResults || searchResults?.length === 0 ? (
             <span className="text-md">
               There are no results matching your query
             </span>
+          ) : (
+            searchResults.map((searchResult, sId) => (
+              <InfoCard property={searchResult} key={sId} />
+            ))
           )}
-
-          {searchResults.map((searchResult, sId) => (
-            <InfoCard property={searchResult} key={sId} />
-          ))}
         </div>
       </section>
     </div>
