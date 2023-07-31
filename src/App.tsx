@@ -9,6 +9,7 @@ import Home from "./pages/home/Home";
 import PropertyDetails from "./pages/details/PropertyDetails";
 import Search from "./pages/search/Search";
 import NotFound from "./pages/404/NotFound";
+import AboutUs from "./pages/about/AboutUs";
 
 const progress = new ProgressBar({
   size: 4,
@@ -36,6 +37,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/property/:id" element={<PropertyDetails />} />
           <Route path="/search" element={<Search />} />
           <Route path="/page-not-found" element={<NotFound />} />
