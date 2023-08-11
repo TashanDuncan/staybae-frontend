@@ -3,16 +3,10 @@ import { useLocation } from "react-router-dom";
 import InfoCard from "src/components/cards/InfoCard";
 import { useSearchResults } from "src/hooks/useSearchResults";
 import PropertyType from "src/interfaces/Property";
-import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
-import { useMemo } from "react";
 import Map from "src/components/map/Map";
 
 const Search = () => {
   const location = useLocation();
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY!,
-  });
-  const centerMap = useMemo(() => ({ lat: 0, lng: 0 }), []);
 
   //extract request/state parameters:
   const {

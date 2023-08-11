@@ -29,7 +29,8 @@ const Map = ({ searchResults, region }: MapProps) => {
     <GoogleMap
       zoom={region === Region.Worldwide ? 2.5 : 5}
       center={centerMap}
-      mapContainerStyle={{ width: "50%", height: "100vh" }}
+      mapContainerClassName="ml-5"
+      mapContainerStyle={{ width: "50vw", height: "100vh" }}
     >
       {searchResults.map((searchResult, sId) => (
         <MarkerF
