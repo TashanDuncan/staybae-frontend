@@ -21,6 +21,7 @@ import {
 import LoadingImage from "src/assets/images/loading-image.gif";
 import useFavourite from "src/hooks/useFavourite";
 import { AxiosResponse } from "axios";
+import NearbyPlaces from "src/components/places/Places";
 
 const PropertyDetails = () => {
   const [images, setImages] = useState<string[]>([]);
@@ -35,11 +36,9 @@ const PropertyDetails = () => {
     const allPropertyImages = [data?.data.heroImg, ...data?.data.images];
     setImages(allPropertyImages);
     setCurrentImageSrc(allPropertyImages[0]);
-
     window.scrollTo(0, 0);
   };
   const { data } = useFetchProperty(id!, onSuccessPropertyLoaded);
-
   const previousImage = () => {
     const isFirstSlide = currentImage === 0;
     const newImageIdx = isFirstSlide ? images.length - 1 : currentImage - 1;
@@ -282,6 +281,7 @@ const PropertyDetails = () => {
         </div>
       </div>
       <hr className="w-full m-6 border-1 border-gray-200 mx-auto" />
+      <NearbyPlaces />
     </main>
   );
 };
