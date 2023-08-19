@@ -21,7 +21,6 @@ const NearbyPlaces = () => {
     Axios.get(`/properties/${id}/places`)
       .then((response) => {
         setData(response.data.results);
-        console.log(response.data.results);
         setLoading(false);
       })
       .catch((err) => {
